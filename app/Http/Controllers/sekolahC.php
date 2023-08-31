@@ -189,8 +189,9 @@ class sekolahC extends Controller
      * @param  \App\Models\sekolahM  $sekolahM
      * @return \Illuminate\Http\Response
      */
-    public function destroy(sekolahM $sekolahM)
+    public function destroy(sekolahM $sekolahM, $idsekolah)
     {
-        //
+        sekolahM::destroy($idsekolah);
+        return redirect()->back()->with("success", "data berhasil dihapus")->withInput();
     }
 }

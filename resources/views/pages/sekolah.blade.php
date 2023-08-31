@@ -114,7 +114,7 @@
                                             <button class="badge border-0 py-1 badge-primary" type="button" data-toggle="modal" data-target="#ubahdetailsekolah{{ $item->idsekolah }}"><i class="fa fa-eye"></i>Detail</button>
                                         </td>
                                         <td>
-                                            <form action="{{ route('sekolah.destroy', [$item->idsekolah]) }}" class="d-inline">
+                                            <form action="{{ route('sekolah.destroy', [$item->idsekolah]) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method("DELETE")
                                                 <button type="submit" class="badge badge-danger border-0 py-1" onclick="return confirm('Lanjutkan proses hapus?')">
