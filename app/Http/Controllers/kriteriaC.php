@@ -86,7 +86,18 @@ class kriteriaC extends Controller
     {
         try {
             $data = $request->all();
+            $bobot = $request->bobot;
+            $kriteria = kriteriaM::sum("bobot");
+            
+
             $update = kriteriaM::where("idkriteria", $idkriteria)->first();
+
+            $hitung = ($kriteria - $update->bobot) + $bobot;
+
+            if($hitung > 100) {
+                return redirect()->back()->with("error", "Bobot Melebihi 100%")->withInput();
+            }
+
             $update->update($data);
             
             return redirect()->back()->with("success", "data".$update->namakriteria." berhasil diupdate")->withInput();

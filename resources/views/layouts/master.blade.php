@@ -121,7 +121,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ url('dashboard', []) }}" class="nav-link @yield('warnadashboard')">
+            <a href="{{ url('home', []) }}" class="nav-link @yield('warnahome')">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Dashboard
@@ -139,20 +139,20 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{ url('kriteria', []) }}" class="nav-link @yield('warnakriteria')">
               <i class="nav-icon fas fa-star"></i>
               <p>
                 Data Kriteria
               </p>
             </a>
-          </li>
+          </li> --}}
 
           <li class="nav-item">
             <a href="{{ url('subkriteria', []) }}" class="nav-link @yield('warnasubkriteria')">
               <i class="nav-icon fas fa-database"></i>
               <p>
-                Data Subkriteria
+                Data Kriteria
               </p>
             </a>
           </li>

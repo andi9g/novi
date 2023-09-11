@@ -36,7 +36,7 @@ class indexC extends Controller
     public function logout(Request $request)
     {
         $request->session()->flush();
-        return redirect('login');
+        return redirect('/');
     }
 
     public function proses(Request $request)

@@ -8,51 +8,18 @@
 
 
 @section('content')
-<div id="tambahkriteria" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="tambah" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="tambah">Kriteria Baru</h5>
-                <button class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('kriteria.store', []) }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="namakriteria">Nama Kriteria</label>
-                        <input id="namakriteria" class="form-control" type="text" name="namakriteria">
-                    </div>
-                    <div class="form-group">
-                        <label for="bobot">Bobot</label>
-                        <input id="bobot" class="form-control" type="number" name="bobot">
-                    </div>
-                    <div class="form-group">
-                        <label for="typedata">Type Data</label>
-                        <select id="typedata" class="form-control" name="typedata">
-                            <option value="dinamis">Dinamis</option>
-                            <option value="statis">Statis</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">
-                        Tambah Data
-                    </button>
-                </div>
 
-            </form>
-        </div>
-    </div>
-</div>
+
+
+
+
 
 <div class="container">
     <div class="card card-outline card-secondary">
         <div class="card-header">
             <div class="row">
                 <div class="col-md-7">
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#tambahkriteria">Tambah Sekolah</button>
+                    {{-- <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#tambahkriteria">Tambah Sekolah</button> --}}
                 </div>
                 
                 <div class="col-md-5">
@@ -85,13 +52,13 @@
                         <td>{{ $item->namakriteria }}</td>
                         <td>{{ $item->bobot }}</td>
                         <td>
-                            <form action="{{ route('kriteria.destroy', [$item->idkriteria]) }}" method="post" class="d-inline">
+                            {{-- <form action="{{ route('kriteria.destroy', [$item->idkriteria]) }}" method="post" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" onclick="return confirm('Yakin ingin dihapus?')" class="badge badge-danger py-1 border-0">
                                     <i class="fa fa-trash"></i> Hapus
                                 </button>
-                            </form>
+                            </form> --}}
 
                             <button class="badge py-1 border-0 badge-primary" type="button" data-toggle="modal" data-target="#ubahkriteria{{ $item->idkriteria }}">
                                 <i class="fa fa-edit"></i> Ubah
@@ -120,17 +87,7 @@
                                             <label for="bobot">Bobot</label>
                                             <input id="bobot" class="form-control" type="number" name="bobot" value="{{ $item->bobot }}">
                                         </div>
-                                        <div class="form-group">
-                                            <label for="typedata">Type Data</label>
-                                            <select id="typedata" class="form-control" name="typedata">
-                                                <option value="dinamis" @if ($item->typedata=="dinamis")
-                                                    selected
-                                                @endif>Dinamis</option>
-                                                <option value="statis" @if ($item->typedata=="statis")
-                                                    selected
-                                                @endif>Statis</option>
-                                            </select>
-                                        </div>
+                                        
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-success">

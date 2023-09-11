@@ -9,6 +9,17 @@
 
 @section('content')
 <div class="row">
+    <div class="col-md-12">
+        @php
+            $totalbobot = DB::table("kriteria")->sum("bobot");
+        @endphp
+        <h1>TOTAL BOBOT :{{ $totalbobot }}%</h1>
+
+    </div>
+</div>
+
+<div class="row">
+
 @foreach ($data as $item)
 
 @php
@@ -60,22 +71,61 @@
         </div>
     </div>
 
+    <div id="ubahkriteria{{ $item->idkriteria }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ubahkriteria" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ubahkriteria">Ubah Kriteria</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('kriteria.update', [$item->idkriteria]) }}" method="post">
+                    @csrf
+                    @method("PUT")
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="namakriteria">Nama Kriteria</label>
+                            <input id="namakriteria" class="form-control" type="text" name="namakriteria" value="{{ $item->namakriteria }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="bobot">Bobot</label>
+                            <input id="bobot" class="form-control" type="number" name="bobot" value="{{ $item->bobot }}">
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">
+                            Ubah Data
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
         <div class="col-md-6">
             <div class="card card-outline card-secondary">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-4">
-                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#tambahsubkriteria{{ $item->idkriteria }}">Tambah Subkriteria</button>
-                        </div>
-                        <div class="col-md-8 text-right">
-                            <h4>{{ strtoupper($item->namakriteria) }}</h4>
+                        <div class="col-md-12">
+                            <h4 class="d-inline"><b>{{ strtoupper($item->namakriteria) }}</b>
+                            ({{ $item->bobot }}%)</h4>
+
+                            <button class="badge py-1 border-0 badge-danger d-inline" type="button" data-toggle="modal" data-target="#ubahkriteria{{ $item->idkriteria }}">
+                                <i class="fa fa-edit"></i> Ubah
+                            </button>
+
                         </div>
                     </div>
                 </div>
         
         
                 <div class="card-body">
+                    <div class="col-md-4 m-0 p-0 mb-3">
+                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#tambahsubkriteria{{ $item->idkriteria }}">Tambah Subkriteria</button>
+                    </div>
                     <table class="table table-hover table-sm table-striped table-bordered">
                         <thead>
                             <th>No</th>
